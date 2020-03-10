@@ -1,0 +1,38 @@
+/*.cuadro{
+    width: 500px;
+    height: 700;
+    margin-top: 150px;
+}*/
+
+.formulario{
+    text-align: center;
+    font: 1em sans-serif;
+    margin-top: 150px;
+}
+
+.inputs{
+    text-align: center;
+    border-radius: 4px;
+    height: 30px;
+    margin: 5px;
+}
+
+button{
+    background-color: pink;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 25px;
+    font-size: 15px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+button:enabled:hover{
+    background-image: url("https://i.ibb.co/3dsz5nz/MLP-btn1.png"); 
+    background-size: cover;
+}
+

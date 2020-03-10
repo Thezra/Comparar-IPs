@@ -1,13 +1,32 @@
-/*.cuadro{
-    width: 500px;
-    height: 700;
-    margin-top: 150px;
-}*/
+body{
+    background-image: url("https://i.ibb.co/239NJmh/MLP-background.png");
+    background-position: center 20%;
+}
 
-.formulario{
+.cuadro{
+    position: absolute;
+    border-radius: 4px;
+    height: 200px;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 100px;
+    margin-left: 475px;
+    /*background-image: url("https://i.ibb.co/wgKNQTs/alfabetajuega-my-little-pony-190717.jpg");*/
+    background-size: contain;
+}
+
+.resultados{
+    position: relative;
     text-align: center;
     font: 1em sans-serif;
-    margin-top: 150px;
+    margin: 6px;
+}
+
+.formulario{
+    position: relative;
+    text-align: center;
+    font: 1em sans-serif;
+    margin: 6px;
 }
 
 .inputs{
@@ -17,22 +36,31 @@
     margin: 5px;
 }
 
+label{
+    font-weight: bolder;
+    color: cornsilk;
+}
+
 button{
-    background-color: pink;
+    background-color: rgb(224, 0, 131);
     transition-duration: 0.5s;
     cursor: pointer;
     border-radius: 4px;
     padding: 10px 25px;
     font-size: 15px;
+    color: azure;
+    margin: 3px;
 }
 
 button:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 
 button:enabled:hover{
     background-image: url("https://i.ibb.co/3dsz5nz/MLP-btn1.png"); 
     background-size: cover;
+    color: black;
+    font-weight: bolder;
 }
 

@@ -67,15 +67,15 @@ function unaIP1(){
 	if (verificarUnaIP1() == "OK"){
 
 	}else{
-		alert ("El campo de la segunda IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
+		alert ("El campo de la primera IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
 	}
 }
 
 function unaIP2(){
-	if (verificarUnaIP1() == "OK"){
+	if (verificarUnaIP2() == "OK"){
 		
 	}else{
-		alert ("El campo de la primera IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
+		alert ("El campo de la segunda IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
 
 	}
 }

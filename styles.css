@@ -10,7 +10,7 @@ body{
 
 .cuadro{
 	margin: 20px;
-	width: 450px;
+	width: 600px;
 	height: 250px;
 	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 4px;
@@ -66,4 +66,3 @@ button:enabled:hover{
     color: black;
     font-weight: bolder;
 }
-

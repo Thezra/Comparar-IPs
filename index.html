@@ -7,13 +7,23 @@
 <body>
     <div class="cuadro">
         <form id="info" class="formulario">
-            <label for="IP1"> Ingrese la primera ip</label>
-            <input class="inputs" type="text" name="IP1" id="IP1" onInput="validarInput()" placeholder="IP 1"><br>
+
+        	<label for="IP1"> Ingrese la primera ip</label>
+            <input class="inputs" type="number" min="0" max="255" name="IP1_1" id="IP1_1" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP1_2" id="IP1_2" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP1_3" id="IP1_3" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP1_4" id="IP1_4" placeholder="0"><br>
+
             <label for="IP2"> Ingrese la segunda ip</label>
-            <input class="inputs" type="text" name="IP2" id="IP2" onInput="validarInput()" placeholder="IP 2"><br>
-            <button type="button" class="buttons" id="btn-1ip1" onclick="unaIP1()" disabled>Info IP 1</button>
-            <button type="button" class="buttons" id="btn-1ip2" onclick="unaIP2()" disabled>Info IP 2</button><br>
-            <button type="button" class="buttons" id="btn-2ip" onclick="unaIP1(), unaIP2()" disabled>Comparar IPs</button>
+            <input class="inputs" type="number" min="0" max="255" name="IP2_1" id="IP2_1" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP2_2" id="IP2_2" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP2_3" id="IP2_3" placeholder="0"><h style="color: white">.</h>
+            <input class="inputs" type="number" min="0" max="255" name="IP2_4" id="IP2_4" placeholder="0"><br>
+
+            <button type="button" class="buttons" id="btn-1ip1" onclick="unaIP1()">Info IP 1</button>
+            <button type="button" class="buttons" id="btn-1ip2" onclick="unaIP2()">Info IP 2</button><br>
+            <button type="button" class="buttons" id="btn-2ip" onclick="dosIP()">Comparar IPs</button>
+
         </form>
     </div>
     <script src="app.js"></script>

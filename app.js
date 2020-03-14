@@ -12,7 +12,8 @@
   }*/
 
   // ¿Qué es MIP?
-var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = []; var IP1MBin = []; var IPAMostrar=""
+var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = []; 
+var IP2Bin = [] ; var IP1MBin = []; var IP2MBin = []; var IPAMostrar=""
 
 // --- Verificación botón de una IP1  ---
 function verificarUnaIP1(){
@@ -87,7 +88,15 @@ function unaIP1(){
 
 function unaIP2(){
     if (verificarUnaIP2() == "OK"){
-        
+        for (let item of ElementosIP2){
+            let itemBin = convertirDecBin(item);
+            IP2Bin.push(itemBin)
+        }
+        for(let item2 of ElementosMIP2){
+            let itemMBin = convertirDecBin(item2)
+            IP2MBin.push(itemMBin)
+        }
+        CortarIP(IP2Bin, IP2MBin)
     }else{
         alert ("El campo de la segunda IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
 
@@ -156,8 +165,10 @@ function CortarIP(IPList, maskList){
         }
     }
     IPAmostrar= IPPuraAgrupada.join(".")
+    console.log("RESPUESTA: ",IPAmostrar,"/",contMascara)
     return (IPAmostrar,"/",contMascara)
 }
 
+//Al final de todo hay que resetar las listas de elementos de las IPs [Lo podemos hacer después]
 
-//Al final de todo hay que resetar las listas de elementos de las IPs
+

@@ -77,8 +77,8 @@ function unaIP1(){
             IP1MBin.push(itemMBin)
         }
         CortarIP(IP1Bin, IP1MBin)
-        console.log("ip en binario", IP1Bin)	
-        console.log("mascara en binario", IP1MBin)
+        //console.log("ip en binario", IP1Bin)	
+        //console.log("mascara en binario", IP1MBin)
 
     }else{
         alert ("El campo de la primera IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
@@ -115,12 +115,10 @@ function convertirDecBin(numero){
         numeroArreglo.push("0")
     }
     var binarioAMostrar=String(numeroArreglo.reverse().join("")) 
-    //console.log("numero final: ", binarioAMostrar)
-    //console.log(typeof(numeroArreglo))
     return (binarioAMostrar)   
 }
 
-//Busca dónde y corta la red, después la agrupa en un string con los octetos separados por puntos y lo muestra 
+//Busca dónde y corta la red, después la agrupa en un string con los octetos separados por puntos y lo muestra el fomatio IP/MASCARA
 function CortarIP(IPList, maskList){   
     let IPPuraList=[]
     let contMascara=0
@@ -136,7 +134,6 @@ function CortarIP(IPList, maskList){
     console.log(contMascara)
     for (let i=0; i<4; i++){
         let itemIP=IPList[i]
-        //console.log(itemIP)
         let itemMask=maskList[i]
         for (let j=0; j<8;j++){
             if (itemMask.charAt(j) == "1"){
@@ -152,18 +149,14 @@ function CortarIP(IPList, maskList){
     for (let k=1; k<=32; k++){
         if (k%8==0){
             Agrupador = Agrupador.concat(IPPuraList[k-1])
-            //console.log(Agrupador)
             IPPuraAgrupada.push(Agrupador)
             Agrupador=""
         }else{
             Agrupador = Agrupador.concat(IPPuraList[k-1])
-            //console.log(Agrupador)
         }
     }
     IPAmostrar= IPPuraAgrupada.join(".")
-    console.log("IP Pura por grupos de 8",IPPuraAgrupada)
-    console.log("IP Pura a mostrar",IPAMostrar)
-    return IPAMostrar
+    return (IPAmostrar,"/",contMascara)
 }
 
 

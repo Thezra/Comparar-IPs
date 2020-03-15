@@ -6,13 +6,12 @@
     (document.getElementById("IP2_1").value.length>0 || document.getElementById("IP2_2").value.length>0 ||
     	document.getElementById("IP2_3").value.length>0 || document.getElementById("IP2_4").value.length>0);
     
-
     document.getElementById("btn-1ip2").disabled = !document.getElementById("IP2").value.length || (document.getElementById("IP1").value.length>0);
     document.getElementById("btn-2ip").disabled = !document.getElementById("IP1").value.length || !document.getElementById("IP2").value.length
   }*/
 
-  // ¿Qué es MIP?
-var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = []; 
+  // ¿Qué es MIP? Es Máscara de IP
+var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = [];
 var IP2Bin = [] ; var IP1MBin = []; var IP2MBin = []; var IPAMostrar=""; var broadcastAMostrar=""
 
 // --- Verificación botón de una IP1  ---
@@ -32,10 +31,8 @@ function verificarUnaIP1(){
         }
     }
     if (ElementosIP1.length < 4 || ElementosMIP1.length < 4){
-        return ("NOT OK")
         ElementosIP1 = []
-        
-        //¿el return no para en seco la función?(¿Si alcanza a limpiar la lista?)
+        return ("NOT OK")
     }else{
         return ("OK")
     }
@@ -58,15 +55,13 @@ function verificarUnaIP2(){
         }
     }
     if (ElementosIP2.length < 4 || ElementosMIP2.length < 4){
-        return ("NOT OK")
         ElementosIP2 = []
+        return ("NOT OK")
     }else{
         return ("OK")
     }
 }
 
-
-// --- Lógica ---
 function unaIP1(){
     if (verificarUnaIP1() == "OK"){
         for (let item of ElementosIP1){
@@ -78,9 +73,8 @@ function unaIP1(){
             IP1MBin.push(itemMBin)
         }
         CortarIP(IP1Bin, IP1MBin)
-        //console.log("ip en binario sin manipular", IP1Bin)	
-        //console.log("mascara en binario", IP1MBin)
-
+        red(IP1Bin, IP1MBin)
+        IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []
     }else{
         alert ("El campo de la primera IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
     }
@@ -97,15 +91,42 @@ function unaIP2(){
             IP2MBin.push(itemMBin)
         }
         CortarIP(IP2Bin, IP2MBin)
+        red(IP2Bin, IP2MBin)
+        IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = []
     }else{
         alert ("El campo de la segunda IP y de su mascara debe estar lleno y cada elemento debe ser un numero entero entre 0 y 255")
-
     }
 }
 
 function dosIP(){
     if (verificarUnaIP1() == "OK" && verificarUnaIP2() == "OK"){
-        
+
+        for (let item of ElementosIP1){
+            let itemBin = convertirDecBin(item);
+            IP1Bin.push(itemBin)
+        }
+        for(let item2 of ElementosMIP1){
+            let itemMBin = convertirDecBin(item2)
+            IP1MBin.push(itemMBin)
+        }
+        for (let item of ElementosIP2){
+            let itemBin = convertirDecBin(item);
+            IP2Bin.push(itemBin)
+        }
+        for(let item2 of ElementosMIP2){
+            let itemMBin = convertirDecBin(item2)
+            IP2MBin.push(itemMBin)
+        }
+        let Red1 = red(IP1Bin, IP1MBin)
+        let Red2 = red(IP2Bin, IP2MBin)
+
+        if (Red1 == Red2){
+            CortarIP(IP1Bin, IP1MBin)
+        }else{
+            document.getElementById('mensaje').innerHTML = "Las redes no pertenecen a la misma red"
+        }
+        IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []; 
+        IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = [];
     }else{
         alert ("Los campos de ambas IP y de sus mascaras deben estar llenos y cada elemento debe ser un numero entero entre 0 y 255")
 
@@ -127,17 +148,53 @@ function convertirDecBin(numero){
     return (binarioAMostrar)   
 }
 
-//Busca dónde y corta la red, saca la mascara y el broadcast. luego la agrupa en un string con los octetos separados por puntos y lo guarda en las variables globales IPAMostrar y broadcastAMostrar
-
-function CortarIP(IPList, maskList){   
+// --- Retorna la red ---
+function red(IPList, maskList){
     let listaIPDecimal = [0,0,0,0]
+    let IPPuraList=[]
+    let IPPuraAgrupada=[]
+    let Agrupador=""
+
+    for (let i=0; i<4; i++){
+        let itemIP=IPList[i]
+        let itemMask=maskList[i]
+        for (let j=0; j<8;j++){
+            if (itemMask.charAt(j) == "1"){
+                IPPuraList.push(itemIP.charAt(j))
+            }
+        }
+    }
+
+    while (IPPuraList.length<32){
+        IPPuraList.push("0")
+    }
+
+    for (let k=1; k<=32; k++){
+        if (k%8==0){
+            Agrupador = Agrupador.concat(IPPuraList[k-1])
+            IPPuraAgrupada.push(Agrupador)
+            Agrupador=""
+        }else{
+            Agrupador = Agrupador.concat(IPPuraList[k-1])
+        }
+    }
+
+    for (let y=0;y<4;y++){
+        listaIPDecimal[y]=parseInt(IPPuraAgrupada[y],2)
+    }
+    IPAMostrar=listaIPDecimal.join(".")
+    listaIPDecimal = [0,0,0,0]; IPPuraList=[]; IPPuraAgrupada=[]; Agrupador=""
+
+    return IPAMostrar
+}
+
+//Busca dónde y corta la red, saca la mascara y el broadcast. luego la agrupa en un string con los octetos separados por puntos y lo guarda en las variables globales IPAMostrar y broadcastAMostrar
+function CortarIP(IPList, maskList){   
     let listaBroadcastDecimal = [0,0,0,0]
     let broadcastList=[]
     let IPPuraList=[]
     let contMascara=0
-    let IPPuraAgrupada=[]
     let broadcastAgrupada=[]
-    let Agrupador=""
     let Agrupador2=""
     for (let itemMask of maskList){
        for (let charMask of itemMask){
@@ -146,7 +203,7 @@ function CortarIP(IPList, maskList){
         }
        } 
     }
-    console.log("bits mascara: ",contMascara)
+
     for (let i=0; i<4; i++){
         let itemIP=IPList[i]
         let itemMask=maskList[i]
@@ -165,23 +222,6 @@ function CortarIP(IPList, maskList){
         broadcastList.push("1")
     }
 
-    //console.log("lista broadcast",broadcastList)
-    
-    while (IPPuraList.length<32){
-        IPPuraList.push("0")
-    }    
-
-    //console.log("IP pura: ", IPPuraList)
-
-    for (let k=1; k<=32; k++){
-        if (k%8==0){
-            Agrupador = Agrupador.concat(IPPuraList[k-1])
-            IPPuraAgrupada.push(Agrupador)
-            Agrupador=""
-        }else{
-            Agrupador = Agrupador.concat(IPPuraList[k-1])
-        }
-    }
     for (let l=1; l<=32; l++){
         if (l%8==0){
             Agrupador2 = Agrupador2.concat(broadcastList[l-1])
@@ -191,19 +231,14 @@ function CortarIP(IPList, maskList){
             Agrupador2 = Agrupador2.concat(broadcastList[l-1])
         }
     }
-    for (let y=0;y<4;y++){
-        listaIPDecimal[y]=parseInt(IPPuraAgrupada[y],2)
-    }
+
     for (let w=0;w<4;w++){
         broadcastAgrupada[w]=parseInt(broadcastAgrupada[w],2)
     }
-    IPAMostrar=listaIPDecimal.join(".")
     broadcastAMostrar=broadcastAgrupada.join(".")
-    
-    //console.log("IP: ",IPAMostrar,"/",contMascara)
-    //console.log("BROADCAST: ",broadcastAMostrar)
+    var maxUsr = 2**(32-contMascara)
+
+    document.getElementById('mensaje').innerHTML = "Max Users: " + maxUsr + "\nIP: " + red(IPList, maskList)+"/"+contMascara+ "\nBROADCAST: "+ broadcastAMostrar;
+    broadcastList=[]; IPPuraList=[]; contMascara=0; broadcastAgrupada=[]; Agrupador2=""
+
 }
-
-//Al final de todo hay que resetar las listas de elementos de las IPs [Lo podemos hacer después]
-
-

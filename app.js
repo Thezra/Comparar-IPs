@@ -238,7 +238,9 @@ function CortarIP(IPList, maskList){
     broadcastAMostrar=broadcastAgrupada.join(".")
     var maxUsr = 2**(32-contMascara)
 
-    document.getElementById('mensaje').innerHTML = "Max Users: " + maxUsr + "\nIP: " + red(IPList, maskList)+"/"+contMascara+ "\nBROADCAST: "+ broadcastAMostrar;
+    document.getElementById('mensajeMaxUsers').innerHTML = "Max Users: " + maxUsr;
+    document.getElementById('mensajeIP').innerHTML = "IP: " + red(IPList, maskList)+"/"+contMascara;
+    document.getElementById('mensajeBroadcast').innerHTML = "BROADCAST: "+ broadcastAMostrar;
     broadcastList=[]; IPPuraList=[]; contMascara=0; broadcastAgrupada=[]; Agrupador2=""
 
 }

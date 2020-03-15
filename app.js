@@ -163,13 +163,13 @@ function CortarIP(IPList, maskList){
         broadcastList.push("1")
     }
 
-    console.log("lista broadcast",broadcastList)
+    //console.log("lista broadcast",broadcastList)
     
     while (IPPuraList.length<32){
         IPPuraList.push("0")
     }    
 
-    console.log("IP pura: ", IPPuraList)
+    //console.log("IP pura: ", IPPuraList)
 
     for (let k=1; k<=32; k++){
         if (k%8==0){
@@ -191,8 +191,8 @@ function CortarIP(IPList, maskList){
     }
     IPAmostrar= IPPuraAgrupada.join(".")
     broadcastAMostrar=broadcastAgrupada.join(".")
-    //console.log("IP: ",IPAmostrar,"/",contMascara)
-    //console.log("BROADCAST: ",broadcastAMostrar)
+    console.log("IP: ",IPAmostrar,"/",contMascara)
+    console.log("BROADCAST: ",broadcastAMostrar)
 }
 
 //Al final de todo hay que resetar las listas de elementos de las IPs [Lo podemos hacer después]

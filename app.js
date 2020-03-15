@@ -130,6 +130,8 @@ function convertirDecBin(numero){
 //Busca dónde y corta la red, saca la mascara y el broadcast. luego la agrupa en un string con los octetos separados por puntos y lo guarda en las variables globales IPAMostrar y broadcastAMostrar
 
 function CortarIP(IPList, maskList){   
+    let listaIPDecimal = [0,0,0,0]
+    let listaBroadcastDecimal = [0,0,0,0]
     let broadcastList=[]
     let IPPuraList=[]
     let contMascara=0
@@ -189,10 +191,17 @@ function CortarIP(IPList, maskList){
             Agrupador2 = Agrupador2.concat(broadcastList[l-1])
         }
     }
-    IPAmostrar= IPPuraAgrupada.join(".")
+    for (let y=0;y<4;y++){
+        listaIPDecimal[y]=parseInt(IPPuraAgrupada[y],2)
+    }
+    for (let w=0;w<4;w++){
+        broadcastAgrupada[w]=parseInt(broadcastAgrupada[w],2)
+    }
+    IPAMostrar=listaIPDecimal.join(".")
     broadcastAMostrar=broadcastAgrupada.join(".")
-    console.log("IP: ",IPAmostrar,"/",contMascara)
-    console.log("BROADCAST: ",broadcastAMostrar)
+    
+    //console.log("IP: ",IPAMostrar,"/",contMascara)
+    //console.log("BROADCAST: ",broadcastAMostrar)
 }
 
 //Al final de todo hay que resetar las listas de elementos de las IPs [Lo podemos hacer después]

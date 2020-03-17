@@ -72,6 +72,7 @@ function unaIP1(){
             let itemMBin = convertirDecBin(item2)
             IP1MBin.push(itemMBin)
         }
+        document.getElementById('mensajeNoCoincide').innerHTML = ""
         CortarIP(IP1Bin, IP1MBin)
         red(IP1Bin, IP1MBin)
         IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []
@@ -90,6 +91,7 @@ function unaIP2(){
             let itemMBin = convertirDecBin(item2)
             IP2MBin.push(itemMBin)
         }
+        document.getElementById('mensajeNoCoincide').innerHTML = ""
         CortarIP(IP2Bin, IP2MBin)
         red(IP2Bin, IP2MBin)
         IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = []
@@ -117,6 +119,11 @@ function dosIP(){
             let itemMBin = convertirDecBin(item2)
             IP2MBin.push(itemMBin)
         }
+
+        document.getElementById('mensajeMaxUsers').innerHTML = "";
+        document.getElementById('mensajeIP').innerHTML = "";
+        document.getElementById('mensajeBroadcast').innerHTML = "";
+
         let Red1 = red(IP1Bin, IP1MBin)
         let Red2 = red(IP2Bin, IP2MBin)
 

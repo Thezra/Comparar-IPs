@@ -123,7 +123,7 @@ function dosIP(){
         if (Red1 == Red2){
             CortarIP(IP1Bin, IP1MBin)
         }else{
-            document.getElementById('mensaje').innerHTML = "Las redes no pertenecen a la misma red"
+            document.getElementById('mensajeNoCoincide').innerHTML = "Las redes no pertenecen a la misma red"
         }
         IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []; 
         IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = [];
@@ -239,8 +239,10 @@ function CortarIP(IPList, maskList){
     var maxUsr = 2**(32-contMascara)
 
     document.getElementById('mensajeMaxUsers').innerHTML = "Max Users: " + maxUsr;
-    document.getElementById('mensajeIP').innerHTML = "IP: " + red(IPList, maskList)+"/"+contMascara;
+    document.getElementById('mensajeIP').innerHTML = "IP REAL: " + red(IPList, maskList)+"/"+contMascara;
     document.getElementById('mensajeBroadcast').innerHTML = "BROADCAST: "+ broadcastAMostrar;
+    //document.getElementById('mensajeNoCoincide').innerHTML = "";
     broadcastList=[]; IPPuraList=[]; contMascara=0; broadcastAgrupada=[]; Agrupador2=""
 
+    
 }

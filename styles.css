@@ -66,3 +66,11 @@ button:enabled:hover{
     color: black;
     font-weight: bolder;
 }
+
+.message{
+    text-align: center;
+    font-family: "Arial";
+    font-size: medium;
+    color: white;
+    font-weight: bolder;
+}

@@ -1,16 +1,3 @@
-/*function validarInput() {
-    //Condicion de min y max
-    document.getElementById("btn-1ip1").disabled = (!document.getElementById("IP1_1").value.length &&
-    	!document.getElementById("IP1_2").value.length && !document.getElementById("IP1_3").value.length
-    	&& !document.getElementById("IP1_4").value.length) || 
-    (document.getElementById("IP2_1").value.length>0 || document.getElementById("IP2_2").value.length>0 ||
-    	document.getElementById("IP2_3").value.length>0 || document.getElementById("IP2_4").value.length>0);
-    
-    document.getElementById("btn-1ip2").disabled = !document.getElementById("IP2").value.length || (document.getElementById("IP1").value.length>0);
-    document.getElementById("btn-2ip").disabled = !document.getElementById("IP1").value.length || !document.getElementById("IP2").value.length
-  }*/
-
-  // ¿Qué es MIP? Es Máscara de IP
 var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = [];
 var IP2Bin = [] ; var IP1MBin = []; var IP2MBin = []; var IPAMostrar=""; var broadcastAMostrar=""
 
@@ -123,6 +110,7 @@ function dosIP(){
         document.getElementById('mensajeMaxUsers').innerHTML = "";
         document.getElementById('mensajeIP').innerHTML = "";
         document.getElementById('mensajeBroadcast').innerHTML = "";
+        document.getElementById('mensajeNoCoincide').innerHTML = "";
 
         let Red1 = red(IP1Bin, IP1MBin)
         let Red2 = red(IP2Bin, IP2MBin)

@@ -1,16 +1,3 @@
-/*function validarInput() {
-    //Condicion de min y max
-    document.getElementById("btn-1ip1").disabled = (!document.getElementById("IP1_1").value.length &&
-    	!document.getElementById("IP1_2").value.length && !document.getElementById("IP1_3").value.length
-    	&& !document.getElementById("IP1_4").value.length) || 
-    (document.getElementById("IP2_1").value.length>0 || document.getElementById("IP2_2").value.length>0 ||
-    	document.getElementById("IP2_3").value.length>0 || document.getElementById("IP2_4").value.length>0);
-    
-    document.getElementById("btn-1ip2").disabled = !document.getElementById("IP2").value.length || (document.getElementById("IP1").value.length>0);
-    document.getElementById("btn-2ip").disabled = !document.getElementById("IP1").value.length || !document.getElementById("IP2").value.length
-  }*/
-
-  // ¿Qué es MIP? Es Máscara de IP
 var ElementosIP1 = []; var ElementosIP2 = []; var ElementosMIP1 = []; var ElementosMIP2 = []; var IP1Bin = [];
 var IP2Bin = [] ; var IP1MBin = []; var IP2MBin = []; var IPAMostrar=""; var broadcastAMostrar=""
 
@@ -72,6 +59,7 @@ function unaIP1(){
             let itemMBin = convertirDecBin(item2)
             IP1MBin.push(itemMBin)
         }
+        document.getElementById('mensajeNoCoincide').innerHTML = ""
         CortarIP(IP1Bin, IP1MBin)
         red(IP1Bin, IP1MBin)
         IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []
@@ -90,6 +78,7 @@ function unaIP2(){
             let itemMBin = convertirDecBin(item2)
             IP2MBin.push(itemMBin)
         }
+        document.getElementById('mensajeNoCoincide').innerHTML = ""
         CortarIP(IP2Bin, IP2MBin)
         red(IP2Bin, IP2MBin)
         IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = []
@@ -117,13 +106,19 @@ function dosIP(){
             let itemMBin = convertirDecBin(item2)
             IP2MBin.push(itemMBin)
         }
+
+        document.getElementById('mensajeMaxUsers').innerHTML = "";
+        document.getElementById('mensajeIP').innerHTML = "";
+        document.getElementById('mensajeBroadcast').innerHTML = "";
+        document.getElementById('mensajeNoCoincide').innerHTML = "";
+
         let Red1 = red(IP1Bin, IP1MBin)
         let Red2 = red(IP2Bin, IP2MBin)
 
         if (Red1 == Red2){
             CortarIP(IP1Bin, IP1MBin)
         }else{
-            document.getElementById('mensaje').innerHTML = "Las redes no pertenecen a la misma red"
+            document.getElementById('mensajeNoCoincide').innerHTML = "Las redes no pertenecen a la misma red"
         }
         IP1Bin = []; IP1MBin = []; ElementosIP1 = []; ElementosMIP1 = []; 
         IP2Bin = []; IP2MBin = []; ElementosIP2 = []; ElementosMIP2 = [];
@@ -238,7 +233,11 @@ function CortarIP(IPList, maskList){
     broadcastAMostrar=broadcastAgrupada.join(".")
     var maxUsr = 2**(32-contMascara)
 
-    document.getElementById('mensaje').innerHTML = "Max Users: " + maxUsr + "\nIP: " + red(IPList, maskList)+"/"+contMascara+ "\nBROADCAST: "+ broadcastAMostrar;
+    document.getElementById('mensajeMaxUsers').innerHTML = "Max Users: " + maxUsr;
+    document.getElementById('mensajeIP').innerHTML = "IP REAL: " + red(IPList, maskList)+"/"+contMascara;
+    document.getElementById('mensajeBroadcast').innerHTML = "BROADCAST: "+ broadcastAMostrar;
+    //document.getElementById('mensajeNoCoincide').innerHTML = "";
     broadcastList=[]; IPPuraList=[]; contMascara=0; broadcastAgrupada=[]; Agrupador2=""
 
+    
 }

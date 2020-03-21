@@ -4,27 +4,43 @@ body{
 	align-content: center;
     background-image: url("https://i.ibb.co/239NJmh/MLP-background.png");
     background-position: center;
+    /*background-size: cover;*/
     padding: 0;
     margin: 0;
 }
 
 .cuadro{
-	margin: 20px;
+    margin-top: 50px;
+    margin-right: 20px;
 	width: 600px;
 	height: 310px;
 	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 4px;
-    /*background-image: url("https://i.ibb.co/wgKNQTs/alfabetajuega-my-little-pony-190717.jpg");*/
+}
+
+.cuadro3{
+    margin-top: 50px;
+    margin-left: 20px;
+	width: 600px;
+	height: 310px;
+	/*background-color: rgba(0, 0, 0, 0.8);*/
+	border-radius: 4px;
+    background-image: url("https://i.ibb.co/wgKNQTs/alfabetajuega-my-little-pony-190717.jpg");
+    background-size: contain;
+}
+
+.cuadro3 .cuadro2{
+    display: table;
+    margin-top: 25px;
+    margin-left: 25px;
+    position: relative;
+	width: 550px;
+	height: 255px;
+	background-color: rgba(0, 0, 0, 0.85);
+	border-radius: 4px;
 }
 
 .formulario{
-    position: relative;
-    text-align: center;
-    font: 1em sans-serif;
-    margin: 6px;
-}
-
-.resultados{
     position: relative;
     text-align: center;
     font: 1em sans-serif;
@@ -64,5 +80,16 @@ button:enabled:hover{
     background-image: url("https://i.ibb.co/3dsz5nz/MLP-btn1.png"); 
     background-size: cover;
     color: black;
+    font-weight: bolder;
+}
+
+.cuadro3 .cuadro2 .message{
+    display: table-cell;
+    vertical-align: middle;
+    margin: 10px;
+    text-align: center;
+    font-family: "Arial";
+    font-size: medium;
+    color: white;
     font-weight: bolder;
 }

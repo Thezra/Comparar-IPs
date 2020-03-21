@@ -35,11 +35,18 @@
             <button type="button" class="buttons" id="btn-1ip1" onclick="unaIP1()">Info IP 1</button>
             <button type="button" class="buttons" id="btn-1ip2" onclick="unaIP2()">Info IP 2</button><br>
             <button type="button" class="buttons" id="btn-2ip" onclick="dosIP()">Comparar IPs</button>
-
+            <button type="button" class="buttons" id="btn-refresh" onclick="location.reload()">Ingresar datos de otra(s) IP</button>
         </form>
     </div>
-    <div>
-        <p id="mensaje"></p>
+    <div class="cuadro3">
+        <div class="cuadro2">
+            <div class="message">
+                <p id="mensajeMaxUsers"></p>
+                <p id="mensajeIP"></p>
+                <p id="mensajeBroadcast"></p>
+                <p id="mensajeNoCoincide"></p>
+            </div>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>

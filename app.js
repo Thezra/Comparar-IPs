@@ -231,7 +231,7 @@ function CortarIP(IPList, maskList){
         broadcastAgrupada[w]=parseInt(broadcastAgrupada[w],2)
     }
     broadcastAMostrar=broadcastAgrupada.join(".")
-    var maxUsr = 2**(32-contMascara)
+    var maxUsr = (2**(32-contMascara))-2
 
     document.getElementById('mensajeMaxUsers').innerHTML = "Max Users: " + maxUsr;
     document.getElementById('mensajeIP').innerHTML = "IP REAL: " + red(IPList, maskList)+"/"+contMascara;

@@ -7,7 +7,7 @@ Direccion=~/Documents/
 if [[ $# == 0  ||  ($# == 1 && $1 == "-h") ]]; then
     	echo "Pantalla de ayuda"
 elif [ $# == 1 ] && [ $1 == "-v" ]; then
-    ls -1 | while read nombre; do
+    ls $Direccion -1 | while read nombre; do
 		echo "En la carpeta $nombre hay" $(ls $Direccion"$nombre"|wc -l) "archivo(s)."
 	done
 else
